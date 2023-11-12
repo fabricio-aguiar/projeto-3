@@ -251,7 +251,7 @@ void listar(){//função que lista as tarefas
           }
           else{
             printf("Categoria invalida");
-            listar();
+            menu();
           }
       }
     
@@ -334,9 +334,117 @@ void alterar(){
   menu();
 }
 
-
 void exportar(){
-  
+  int escolha;
+  int categ;
+  int prio;
+  int state;
+  printf("\nEscolha como voce deseja exportar suas tarefas:\n1-Exportar por prioridade\n2-Exportar por categoria\n3-Exportar por prioridade e categoria.\n\n");
+  scanf("%d", &escolha);
+  if(escolha == 1){
+    FILE *p = fopen("prioridade.txt", "w");
+    printf("Qual a prioridade da tarefa?\n1-Urgente\n2-Necessaria\n3-Nao muito importante");
+     scanf("%d", &prio);
+      for(int x=0; x<i; x++){
+       if(list[x].prio == prio){
+         fprintf(p, "Tarefa %d: %d  %s  %s  %s\n", x, list[x].prio, list[x].cat, list[x].state, list[x].desc);
+       }
+      }
+      fclose(p);
+     if(prio!=1||prio!=2||prio!=3){
+       fclose(p);
+       printf("Prioridade invalida");
+       menu();
+     }
+  }
+  else if(escolha == 2){
+    FILE *p = fopen("categoria.txt", "w");
+    printf("Qual a categoria da tarefa?\n1-Limpeza\n2-Trabalho\n3-Organizacao\n4-Outros");
+        scanf("%d", &categ);
+        if (categ == 1){
+          for(int x=0; x<i; x++){
+            if(strcmp(list[x].cat, "Limpeza") == 0){
+              fprintf(p, "Tarefa %d: %d  %s  %s  %s\n", x, list[x].prio, list[x].cat, list[x].state, list[x].desc);
+            }
+          }
+          fclose(p);
+        }
+        else if (categ == 2){
+          for(int x=0; x<i; x++){
+            if(strcmp(list[x].cat, "Trabalho") == 0){
+              fprintf(p, "Tarefa %d: %d  %s  %s  %s\n", x, list[x].prio, list[x].cat, list[x].state, list[x].desc);
+            }
+          }
+          fclose(p);
+        }
+        else if (categ == 3){
+          for(int x=0; x<i; x++){
+            if(strcmp(list[x].cat, "Organizacao") == 0){
+              fprintf(p, "Tarefa %d: %d  %s  %s  %s\n", x, list[x].prio, list[x].cat, list[x].state, list[x].desc);
+            }
+          }
+          fclose(p);
+        }
+        else if (categ == 4){
+          for(int x=0; x<i; x++){
+            if(list[x].cat == "Outros"){
+              fprintf(p, "Tarefa %d: %d  %s  %s  %s\n", x, list[x].prio, list[x].cat, list[x].state, list[x].desc);
+            }
+          }
+          fclose(p);
+        }
+        else{
+          fclose(p);
+          printf("Categoria invalida");
+          menu();
+        }
+    }
+    else if(escolha == 3){
+      FILE *p = fopen("categoria_prioridade.txt", "w");
+      printf("Qual a categoria da tarefa?\n1-Limpeza\n2-Trabalho\n3-Organizacao\n4-Outros");
+      scanf("%d", &categ);
+      printf("Qual a prioridade da tarefa?\n1-Urgente\n2-Necessaria\n3-Nao muito importante");
+       scanf("%d", &prio);
+      if (categ == 1){
+        for(int x=0; x<i; x++){
+          if(strcmp(list[x].cat, "Limpeza") == 0 && list[x].prio == prio){
+            fprintf(p, "Tarefa %d: %d  %s  %s  %s\n", x, list[x].prio, list[x].cat, list[x].state, list[x].desc);
+          }
+        }
+        fclose(p);
+      }
+      else if (categ == 2){
+        for(int x=0; x<i; x++){
+          if(strcmp(list[x].cat, "Trabalho") == 0 && list[x].prio == prio){
+            fprintf(p, "Tarefa %d: %d  %s  %s  %s\n", x, list[x].prio, list[x].cat, list[x].state, list[x].desc);
+          }
+        }
+        fclose(p);
+      }
+      else if (categ == 3){
+        for(int x=0; x<i; x++){
+          if(strcmp(list[x].cat, "Organizacao") == 0 && list[x].prio == prio){
+            fprintf(p, "Tarefa %d: %d  %s  %s  %s\n", x, list[x].prio, list[x].cat, list[x].state, list[x].desc);
+          }
+        }
+        fclose(p);
+      }
+      else if (categ == 4){
+        for(int x=0; x<i; x++){
+          if(list[x].cat == "Outros" && list[x].prio == prio){
+            fprintf(p, "Tarefa %d: %d  %s  %s  %s\n", x, list[x].prio, list[x].cat, list[x].state, list[x].desc);
+          }
+        }
+        fclose(p);
+      }
+      else{
+        fclose(p);
+        printf("Categoria invalida");
+        menu();
+      }
+  }
+
+  menu();
 }
 
 void save(char *arquivo) {//função que salva o array em um arquivo
