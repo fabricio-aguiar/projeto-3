@@ -132,6 +132,7 @@ void menu() {//função para o menu
     printf("2 - Deletar tarefa\n");
     printf("3 - Listar tarefas\n");
     printf("4 - Alterar tarefa\n");
+    printf("5 - Exportar\n");
     printf("0 - Sair\n");
     scanf("%d", &escolha);//vê a escolha do usuário e direciona para a função desejada
     if (escolha == 1) {
@@ -142,6 +143,8 @@ void menu() {//função para o menu
         listar();
     } else if (escolha == 4) {
         alterar();
+    } else if (escolha == 5){
+        exportar();
     } else if (escolha == 0) {
         sair();
     }else {
