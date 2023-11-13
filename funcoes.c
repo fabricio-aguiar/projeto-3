@@ -464,30 +464,25 @@ void save(char *arquivo) {//função que salva o array em um arquivo
 }
 
 void lerarquivo(char *arquivo) {//função para ler o arquivo salvo e salvar no array
-    FILE *file = fopen(arquivo, "rb");//abre o arquivo para leitura
-    if (file == NULL) {
-        perror("Erro ao abrir o arquivo");
-    }
-
-    // lê a quantidade de tarefas
-    fread(&i, sizeof(int), 1, file);
-
-    // lê as tarefas e armazena no array
-    fread(list, sizeof(Tarefa), i, file);
-    if (file == NULL) {//se caso der erro avisa
-        perror("Erro ao abrir o arquivo");
-    }
-
-    // escrever a quantidade de tarefas
-    fwrite(&i, sizeof(int), 1, file);
-    // lê a quantidade de tarefas
-    fread(&i, sizeof(int), 1, file);
-
-    // lê as tarefas e armazena no array
-    fread(list, sizeof(Tarefa), i, file);
-
+  int x = 0;
+  char prio; 
+  FILE *file = fopen(arquivo, "rb");//abre o arquivo para leitura
+  if (file == NULL) {
+    FILE *file = fopen(arquivo, "wb");
     fclose(file);
-    printf("Tarefas carregadas com sucesso!\n");
+    menu();
+  }
+
+  while (!feof(file)) {
+    fread(list[x].desc, sizeof(list[x].desc), 1, file);
+    fread(list[x].cat, sizeof(list[x].cat), 1, file);
+    fread(&prio, sizeof(prio), 1, file);
+    list[x].prio =  prio - '0';
+    fread(list[x].state, sizeof(list[x].state), 1, file);
+  }
+
+  fclose(file);
+  printf("Tarefas carregadas com sucesso!\n");
 }
 
 void sair() {//função para sair
