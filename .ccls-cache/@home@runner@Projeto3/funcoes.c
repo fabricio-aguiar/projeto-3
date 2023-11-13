@@ -474,6 +474,17 @@ void lerarquivo(char *arquivo) {//função para ler o arquivo salvo e salvar no 
 
     // lê as tarefas e armazena no array
     fread(list, sizeof(Tarefa), i, file);
+    if (file == NULL) {//se caso der erro avisa
+        perror("Erro ao abrir o arquivo");
+    }
+
+    // escrever a quantidade de tarefas
+    fwrite(&i, sizeof(int), 1, file);
+    // lê a quantidade de tarefas
+    fread(&i, sizeof(int), 1, file);
+
+    // lê as tarefas e armazena no array
+    fread(list, sizeof(Tarefa), i, file);
 
     fclose(file);
     printf("Tarefas carregadas com sucesso!\n");
