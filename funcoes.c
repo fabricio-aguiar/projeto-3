@@ -18,7 +18,7 @@ void criar(){//função que cria as tarefas
     int estado;
     int categ;
     printf("\n");
-    printf("Qual a categoria da tarefa?\n1-Limpeza\n2-Trabalho\n3-Organizacao\n4-Outros\n");
+    printf("Qual a categoria da tarefa?\n1-Limpeza\n2-Trabalho\n3-Organizacao\n4-Outros\n");//escolha da categoria
     scanf("%d", &categ);
     if (categ == 1){
       strcpy(tarefa.cat, "Limpeza");
@@ -32,21 +32,21 @@ void criar(){//função que cria as tarefas
     else if (categ == 4){
       strcpy(tarefa.cat, "Outros");
     }
-    else{
+    else{//caso o usuario digite um valor invalido
       printf("Categoria invalida\n");
       menu();
     }
-    printf("Qual a prioridade da tarefa?\n1-Urgente\n2-Necessaria\n3-Nao muito importante\n");
+    printf("Qual a prioridade da tarefa?\n1-Urgente\n2-Necessaria\n3-Nao muito importante\n");//escolha da prioridade
     int prio;
     scanf("%d", &prio);
-    if(prio!=1&&prio!=2&&prio!=3){
+    if(prio!=1&&prio!=2&&prio!=3){//caso o usuario digite um valor invalido
       printf("Prioridade invalida\n");
       menu();
     }
     else{
-      tarefa.prio = prio;
+      tarefa.prio = prio;//caso o usuario digite um valor valido
     }
-    printf("Qual o estado da tarefa?\n1-Completo\n2-Em andamento\n3-Nao iniciado\n");
+    printf("Qual o estado da tarefa?\n1-Completo\n2-Em andamento\n3-Nao iniciado\n");//escolha do estado
     scanf("%d", &estado);
     if(estado == 1){
       strcpy(tarefa.state, "Completo");
@@ -61,7 +61,7 @@ void criar(){//função que cria as tarefas
       printf("Estado invalido\n");
       menu();
     }
-    printf("Qual a descricao da tarefa?\n");
+    printf("Qual a descricao da tarefa?\n");//escolha da descricao
     scanf("%s", tarefa.desc);
   
     list[i] = tarefa; //coloca o objeto tarefa dentro do array list
@@ -88,7 +88,7 @@ void listar(){//função que lista as tarefas
   int categ;
   int prio;
   int state;
-  printf("\nEscolha como voce deseja listar suas tarefas:\n1-Listar todas as tarefas\n2-Listar tarefas por categoria\n3-Listar tarefas por prioridade\n4-Listar tarefas por estado\n5-Listar por prioridade e categoria.\n");
+  printf("\nEscolha como voce deseja listar suas tarefas:\n1-Listar todas as tarefas\n2-Listar tarefas por categoria\n3-Listar tarefas por prioridade\n4-Listar tarefas por estado\n5-Listar por prioridade e categoria.\n");//escolha de como voce quer listar as tarefas
   scanf("%d", &escolha);
   if(escolha == 1){
     for(int x = 0; x<i; x++){ //estrutura de repetição que percorre o array com as tarefas e printa os atributos
@@ -100,11 +100,11 @@ void listar(){//função que lista as tarefas
     }
   }
   else if(escolha == 2){
-      printf("Qual a categoria da tarefa?\n1-Limpeza\n2-Trabalho\n3-Organizacao\n4-Outros\n");
+      printf("Qual a categoria da tarefa?\n1-Limpeza\n2-Trabalho\n3-Organizacao\n4-Outros\n");//escolha da categoria
       scanf("%d", &categ);
       if (categ == 1){
         for(int x=0; x<i; x++){
-          if(strcmp(list[x].cat, "Limpeza") == 0){
+          if(strcmp(list[x].cat, "Limpeza") == 0){//compara a categoria com a escolhida e printa as tarefas
             printf("\nTarefa %d:\n", x+1);
             printf("Descricao: %s\n",list[x].desc);
             printf("Categoria: %s\n",list[x].cat);
@@ -115,7 +115,7 @@ void listar(){//função que lista as tarefas
       }
       else if (categ == 2){
         for(int x=0; x<i; x++){
-          if(strcmp(list[x].cat, "Trabalho") == 0){
+          if(strcmp(list[x].cat, "Trabalho") == 0){//compara a categoria com a escolhida e printa as tarefas
             printf("\nTarefa %d:\n", x+1);
             printf("Descricao: %s\n",list[x].desc);
             printf("Categoria: %s\n",list[x].cat);
@@ -126,7 +126,7 @@ void listar(){//função que lista as tarefas
       }
       else if (categ == 3){
         for(int x=0; x<i; x++){
-          if(strcmp(list[x].cat, "Organizacao") == 0){
+          if(strcmp(list[x].cat, "Organizacao") == 0){//compara a categoria com a escolhida e printa as tarefas
             printf("\nTarefa %d:\n", x+1);
             printf("Descricao: %s\n",list[x].desc);
             printf("Categoria: %s\n",list[x].cat);
@@ -137,7 +137,7 @@ void listar(){//função que lista as tarefas
       }
       else if (categ == 4){
         for(int x=0; x<i; x++){
-          if(list[x].cat == "Outros"){
+          if(list[x].cat == "Outros"){//compara a categoria com a escolhida e printa as tarefas
             printf("\nTarefa %d:\n", x+1);
             printf("Descricao: %s\n",list[x].desc);
             printf("Categoria: %s\n",list[x].cat);
@@ -146,20 +146,20 @@ void listar(){//função que lista as tarefas
           }
         }
       }
-      else{
+      else{//caso o usuario digite um numero que nao e escolhido
         printf("Categoria invalida\n");
         menu();
       }
   }
    else if(escolha == 3){
-       printf("Qual a prioridade da tarefa?\n1-Urgente\n2-Necessaria\n3-Nao muito importante\n");
+       printf("Qual a prioridade da tarefa?\n1-Urgente\n2-Necessaria\n3-Nao muito importante\n");//escolha da prioridade
       scanf("%d", &prio);
-        if(prio!=1 && prio!=2 && prio!=3){
+        if(prio!=1 && prio!=2 && prio!=3){//caso o usuario digite um numero que nao e escolhido
            printf("Prioridade invalida\n");
            menu();
          }
       for(int x=0; x<i; x++){
-         if(list[x].prio == prio){
+         if(list[x].prio == prio){//compara a prioridade com a escolhida e printa as tarefas
            printf("\nTarefa %d:\n", x+1);
            printf("Descricao: %s\n",list[x].desc);
            printf("Categoria: %s\n",list[x].cat);
@@ -169,11 +169,11 @@ void listar(){//função que lista as tarefas
         }
     }
     else if(escolha == 4){
-       printf("Qual o estado da tarefa?\n1-Completo\n2-Em andamento\n3-Nao iniciado\n");
+       printf("Qual o estado da tarefa?\n1-Completo\n2-Em andamento\n3-Nao iniciado\n");//escolha do estado
        scanf("%d", &state);
        if (state == 1){
          for(int x=0; x<i; x++){
-           if(strcmp(list[x].state, "Completo") == 0){
+           if(strcmp(list[x].state, "Completo") == 0){//compara o estado com o escolhido e printa as tarefas
              printf("\nTarefa %d:\n", x+1);
              printf("Descricao: %s\n",list[x].desc);
              printf("Categoria: %s\n",list[x].cat);
@@ -184,7 +184,7 @@ void listar(){//função que lista as tarefas
        }
        else if (state == 2){
          for(int x=0; x<i; x++){
-           if(strcmp(list[x].state, "Em andamento") == 0){
+           if(strcmp(list[x].state, "Em andamento") == 0){//compara o estado com o escolhido e printa as tarefas
              printf("\nTarefa %d:\n", x+1);
              printf("Descricao: %s\n",list[x].desc);
              printf("Categoria: %s\n",list[x].cat);
@@ -195,7 +195,7 @@ void listar(){//função que lista as tarefas
        }
        else if (state == 3){
          for(int x=0; x<i; x++){
-           if(strcmp(list[x].state, "Nao iniciado") == 0){
+           if(strcmp(list[x].state, "Nao iniciado") == 0){//compara o estado com o escolhido e printa as tarefas
              printf("\nTarefa %d:\n", x+1);
              printf("Descricao: %s\n",list[x].desc);
              printf("Categoria: %s\n",list[x].cat);
@@ -220,7 +220,7 @@ void listar(){//função que lista as tarefas
        }
       if (categ == 1){
             for(int x=0; x<i; x++){
-              if(strcmp(list[x].cat, "Limpeza") == 0 && list[x].prio == prio){
+              if(strcmp(list[x].cat, "Limpeza") == 0 && list[x].prio == prio){//compara a categoria com a escolhida e a prioridade com a escolhida
                 printf("\nTarefa %d:\n", x+1);
                 printf("Descricao: %s\n",list[x].desc);
                 printf("Categoria: %s\n",list[x].cat);
@@ -231,7 +231,7 @@ void listar(){//função que lista as tarefas
           }
           else if (categ == 2){
             for(int x=0; x<i; x++){
-              if(strcmp(list[x].cat, "Trabalho") == 0 && list[x].prio == prio){
+              if(strcmp(list[x].cat, "Trabalho") == 0 && list[x].prio == prio){//compara a categoria com a escolhida e a prioridade com a escolhida
                 printf("\nTarefa %d:\n", x+1);
                 printf("Descricao: %s\n",list[x].desc);
                 printf("Categoria: %s\n",list[x].cat);
@@ -242,7 +242,7 @@ void listar(){//função que lista as tarefas
           }
           else if (categ == 3){
             for(int x=0; x<i; x++){
-              if(strcmp(list[x].cat, "Organizacao") == 0 && list[x].prio == prio){
+              if(strcmp(list[x].cat, "Organizacao") == 0 && list[x].prio == prio){//compara a categoria com a escolhida e a prioridade com a escolhida
                 printf("\nTarefa %d:\n", x+1);
                 printf("Descricao: %s\n",list[x].desc);
                 printf("Categoria: %s\n",list[x].cat);
@@ -253,7 +253,7 @@ void listar(){//função que lista as tarefas
           }
           else if (categ == 4){
             for(int x=0; x<i; x++){
-              if(list[x].cat == "Outros" && list[x].prio == prio){
+              if(list[x].cat == "Outros" && list[x].prio == prio){//compara a categoria com a escolhida e a prioridade com a escolhida
                 printf("\nTarefa %d:\n", x+1);
                 printf("Descricao: %s\n",list[x].desc);
                 printf("Categoria: %s\n",list[x].cat);
@@ -276,7 +276,7 @@ void alterar(){
   int con;
   int escolha;
   int novo;
-  printf("Digite o numero da tarefa que deseja alterar:\n");
+  printf("Digite o numero da tarefa que deseja alterar:\n");//escolhe a tarefa que deseja alterar
   scanf("%d", &x);
   x--;
   printf("\nTarefa %d:\n", x+1);
@@ -284,7 +284,7 @@ void alterar(){
   printf("Categoria: %s\n",list[x].cat);
   printf("Prioridade: %d\n",list[x].prio);
   printf("Estado: %s\n",list[x].state);
-  printf("Confirme se esta e a tarefa desejada. 1-Sim 2-Nao\n");
+  printf("Confirme se esta e a tarefa desejada. 1-Sim 2-Nao\n");//confirma se a tarefa escolhida é a tarefa que deseja alterar
   scanf("%d", &con);
   if(con == 2){
     menu();
@@ -293,7 +293,7 @@ void alterar(){
     printf("Digite um valor valido\n");
     menu();
   }
-  printf("Escolha oque voce quer mudar na tarefa.\n1-Descricao\n2-Categoria\n3-Prioridade\n4-Estado\n");
+  printf("Escolha oque voce quer mudar na tarefa.\n1-Descricao\n2-Categoria\n3-Prioridade\n4-Estado\n");//escolhe oque voce quer mudar na tarefa
   scanf("%d", &escolha);
   if(escolha == 1){
     printf("Digite a nova descricao:\n");
@@ -360,7 +360,7 @@ void exportar(){
   int categ;
   int prio;
   int state;
-  printf("\nEscolha como voce deseja exportar suas tarefas:\n1-Exportar por prioridade\n2-Exportar por categoria\n3-Exportar por prioridade e categoria.\n");
+  printf("\nEscolha como voce deseja exportar suas tarefas:\n1-Exportar por prioridade\n2-Exportar por categoria\n3-Exportar por prioridade e categoria.\n");//escolhe como voce deseja exportar suas tarefas
   scanf("%d", &escolha);
   if(escolha == 1){
     FILE *p = fopen("prioridade.txt", "w");
@@ -373,7 +373,7 @@ void exportar(){
        }
       for(int x=0; x<i; x++){
        if(list[x].prio == prio){
-         fprintf(p, "Tarefa %d: %d  %s  %s  %s\n", x+1, list[x].prio, list[x].cat, list[x].state, list[x].desc);
+         fprintf(p, "Tarefa %d: %d  %s  %s  %s\n", x+1, list[x].prio, list[x].cat, list[x].state, list[x].desc);//exporta as tarefas com a prioridade escolhida
        }
       }
       fclose(p);
@@ -385,7 +385,7 @@ void exportar(){
         if (categ == 1){
           for(int x=0; x<i; x++){
             if(strcmp(list[x].cat, "Limpeza") == 0){
-              fprintf(p, "Tarefa %d: %d  %s  %s  %s\n", x+1, list[x].prio, list[x].cat, list[x].state, list[x].desc);
+              fprintf(p, "Tarefa %d: %d  %s  %s  %s\n", x+1, list[x].prio, list[x].cat, list[x].state, list[x].desc);//exporta as tarefas com a categoria escolhida
             }
           }
           fclose(p);
@@ -393,7 +393,7 @@ void exportar(){
         else if (categ == 2){
           for(int x=0; x<i; x++){
             if(strcmp(list[x].cat, "Trabalho") == 0){
-              fprintf(p, "Tarefa %d: %d  %s  %s  %s\n", x+1, list[x].prio, list[x].cat, list[x].state, list[x].desc);
+              fprintf(p, "Tarefa %d: %d  %s  %s  %s\n", x+1, list[x].prio, list[x].cat, list[x].state, list[x].desc);//exporta as tarefas com a categoria escolhida
             }
           }
           fclose(p);
@@ -401,7 +401,7 @@ void exportar(){
         else if (categ == 3){
           for(int x=0; x<i; x++){
             if(strcmp(list[x].cat, "Organizacao") == 0){
-              fprintf(p, "Tarefa %d: %d  %s  %s  %s\n", x+1, list[x].prio, list[x].cat, list[x].state, list[x].desc);
+              fprintf(p, "Tarefa %d: %d  %s  %s  %s\n", x+1, list[x].prio, list[x].cat, list[x].state, list[x].desc);//exporta as tarefas com a categoria escolhida
             }
           }
           fclose(p);
@@ -409,7 +409,7 @@ void exportar(){
         else if (categ == 4){
           for(int x=0; x<i; x++){
             if(list[x].cat == "Outros"){
-              fprintf(p, "Tarefa %d: %d  %s  %s  %s\n", x+1, list[x].prio, list[x].cat, list[x].state, list[x].desc);
+              fprintf(p, "Tarefa %d: %d  %s  %s  %s\n", x+1, list[x].prio, list[x].cat, list[x].state, list[x].desc);//exporta as tarefas com a categoria escolhida
             }
           }
           fclose(p);
@@ -433,7 +433,7 @@ void exportar(){
       if (categ == 1){
         for(int x=0; x<i; x++){
           if(strcmp(list[x].cat, "Limpeza") == 0 && list[x].prio == prio){
-            fprintf(p, "Tarefa %d: %d  %s  %s  %s\n", x+1, list[x].prio, list[x].cat, list[x].state, list[x].desc);
+            fprintf(p, "Tarefa %d: %d  %s  %s  %s\n", x+1, list[x].prio, list[x].cat, list[x].state, list[x].desc);//exporta as tarefas com a categoria e prioridade escolhidas
           }
         }
         fclose(p);
@@ -441,7 +441,7 @@ void exportar(){
       else if (categ == 2){
         for(int x=0; x<i; x++){
           if(strcmp(list[x].cat, "Trabalho") == 0 && list[x].prio == prio){
-            fprintf(p, "Tarefa %d: %d  %s  %s  %s\n", x+1, list[x].prio, list[x].cat, list[x].state, list[x].desc);
+            fprintf(p, "Tarefa %d: %d  %s  %s  %s\n", x+1, list[x].prio, list[x].cat, list[x].state, list[x].desc);//exporta as tarefas com a categoria e prioridade escolhidas
           }
         }
         fclose(p);
@@ -449,7 +449,7 @@ void exportar(){
       else if (categ == 3){
         for(int x=0; x<i; x++){
           if(strcmp(list[x].cat, "Organizacao") == 0 && list[x].prio == prio){
-            fprintf(p, "Tarefa %d: %d  %s  %s  %s\n", x+1, list[x].prio, list[x].cat, list[x].state, list[x].desc);
+            fprintf(p, "Tarefa %d: %d  %s  %s  %s\n", x+1, list[x].prio, list[x].cat, list[x].state, list[x].desc);//exporta as tarefas com a categoria e prioridade escolhidas
           }
         }
         fclose(p);
@@ -457,7 +457,7 @@ void exportar(){
       else if (categ == 4){
         for(int x=0; x<i; x++){
           if(list[x].cat == "Outros" && list[x].prio == prio){
-            fprintf(p, "Tarefa %d: %d  %s  %s  %s\n", x+1, list[x].prio, list[x].cat, list[x].state, list[x].desc);
+            fprintf(p, "Tarefa %d: %d  %s  %s  %s\n", x+1, list[x].prio, list[x].cat, list[x].state, list[x].desc);//exporta as tarefas com a categoria e prioridade escolhidas
           }
         }
         fclose(p);
@@ -484,7 +484,7 @@ void save(char *arquivo) {//função que salva o array em um arquivo
       fwrite(list[x].state, sizeof(list[x].state), 1, file);
       int prio = list[x].prio +'0';
       fwrite(&prio, sizeof(prio), 1, file);
-    }
+    }//salva o array no arquivo
 
     fclose(file);
     printf("Tarefas salvas com sucesso!\n");
@@ -507,19 +507,9 @@ void lerarquivo(char *arquivo) {//função para ler o arquivo salvo e salvar no 
     fread(tarefa.state, sizeof(list[x].state), 1, file);
     fread(&prio, sizeof(prio), 1, file);
     tarefa.prio =  prio - '0';
-    printf("\nTarefa %d:\n", x+1);
-    printf("Descricao: %s\n",tarefa.desc);
-    printf("Categoria: %s\n",tarefa.cat);
-    printf("Prioridade: %d\n",tarefa.prio);
-    printf("Estado: %s\n",tarefa.state);
     list[x] = tarefa;
-    printf("\nTarefa %d:\n", x+1);
-    printf("Descricao: %s\n",list[x].desc);
-    printf("Categoria: %s\n",list[x].cat);
-    printf("Prioridade: %d\n",list[x].prio);
-    printf("Estado: %s\n",list[x].state);
     x++;
-  }
+  }//lê o arquivo e salva no array
 
   i = x-1;  
   
