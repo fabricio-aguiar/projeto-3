@@ -145,8 +145,12 @@ void listar(){//função que lista as tarefas
   }
    else if(escolha == 3){
        printf("Qual a prioridade da tarefa?\n1-Urgente\n2-Necessaria\n3-Nao muito importante\n");
-       scanf("%d", &prio);
-        for(int x=0; x<i; x++){
+      scanf("%d", &prio);
+        if(prio!=1 && prio!=2 && prio!=3){
+           printf("Prioridade invalida");
+           menu();
+         }
+      for(int x=0; x<i; x++){
          if(list[x].prio == prio){
            printf("\nTarefa %d:\n", x+1);
            printf("Descricao: %s\n",list[x].desc);
@@ -155,10 +159,6 @@ void listar(){//função que lista as tarefas
            printf("Estado: %s\n",list[x].state);
          }
         }
-       if(prio!=1||prio!=2||prio!=3){
-         printf("Prioridade invalida");
-         menu();
-       }
     }
     else if(escolha == 4){
        printf("Qual o estado da tarefa?\n1-Completo\n2-Em andamento\n3-Nao iniciado\n");
@@ -205,7 +205,11 @@ void listar(){//função que lista as tarefas
       printf("Qual a categoria da tarefa?\n1-Limpeza\n2-Trabalho\n3-Organizacao\n4-Outros\n");
       scanf("%d", &categ);
       printf("Qual a prioridade da tarefa?\n1-Urgente\n2-Necessaria\n3-Nao muito importante\n");
-       scanf("%d", &prio);
+      scanf("%d", &prio);
+      if(prio!=1 && prio!=2 && prio!=3){
+         printf("Prioridade invalida");
+         menu();
+       }
       if (categ == 1){
             for(int x=0; x<i; x++){
               if(strcmp(list[x].cat, "Limpeza") == 0 && list[x].prio == prio){
@@ -251,7 +255,7 @@ void listar(){//função que lista as tarefas
             }
           }
           else{
-            printf("Categoria invalida");
+            printf("Categoria invalida\n");
             menu();
           }
       }
@@ -405,7 +409,11 @@ void exportar(){
       printf("Qual a categoria da tarefa?\n1-Limpeza\n2-Trabalho\n3-Organizacao\n4-Outros\n");
       scanf("%d", &categ);
       printf("Qual a prioridade da tarefa?\n1-Urgente\n2-Necessaria\n3-Nao muito importante\n");
-       scanf("%d", &prio);
+      scanf("%d", &prio);
+      if(prio!=1 && prio!=2 && prio!=3){
+         printf("Prioridade invalida");
+         menu();
+       }
       if (categ == 1){
         for(int x=0; x<i; x++){
           if(strcmp(list[x].cat, "Limpeza") == 0 && list[x].prio == prio){
