@@ -18,7 +18,7 @@ void criar(){//função que cria as tarefas
     int estado;
     int categ;
     printf("\n");
-    printf("Qual a categoria da tarefa?\n1-Limpeza\n2-Trabalho\n3-Organizacao\n4-Outros");
+    printf("Qual a categoria da tarefa?\n1-Limpeza\n2-Trabalho\n3-Organizacao\n4-Outros\n");
     scanf("%d", &categ);
     if (categ == 1){
       strcpy(tarefa.cat, "Limpeza");
@@ -37,10 +37,10 @@ void criar(){//função que cria as tarefas
       menu();
     }
     printf("Qual a descricao da tarefa?\n");
-    scanf("%s", tarefa.desc);
-    printf("Qual a prioridade da tarefa?\n1-Urgente\n2-Necessaria\n3-Nao muito importante");
+    scanf("%s\n", tarefa.desc);
+    printf("Qual a prioridade da tarefa?\n1-Urgente\n2-Necessaria\n3-Nao muito importante\n");
     scanf("%d", &tarefa.prio);
-    printf("Qual o estado da tarefa?\n1-Completo\n2-Em andamento\n3-Nao iniciado");
+    printf("Qual o estado da tarefa?\n1-Completo\n2-Em andamento\n3-Nao iniciado\n");
     scanf("%d", &estado);
     if(estado == 1){
       strcpy(tarefa.state, "Completo");
@@ -449,12 +449,6 @@ void exportar(){
 
 void save(char *arquivo) {//função que salva o array em um arquivo
     FILE *file = fopen(arquivo, "wb");//abre o arquivo
-    if (file == NULL) {//se caso der erro avisa
-        perror("Erro ao abrir o arquivo");
-    }
-
-    // escrever a quantidade de tarefas
-    fwrite(&i, sizeof(int), 1, file);
 
     // escrever as tarefas dentro do arquivo
     fwrite(list, sizeof(Tarefa), i, file);
@@ -464,16 +458,22 @@ void save(char *arquivo) {//função que salva o array em um arquivo
 }
 
 void lerarquivo(char *arquivo) {//função para ler o arquivo salvo e salvar no array
+    int x = 0;
+    char prio; 
     FILE *file = fopen(arquivo, "rb");//abre o arquivo para leitura
     if (file == NULL) {
-        perror("Erro ao abrir o arquivo");
+      FILE *file = fopen(arquivo, "wb");
+      fclose(file);
+      menu();
     }
 
-    // lê a quantidade de tarefas
-    fread(&i, sizeof(int), 1, file);
-
-    // lê as tarefas e armazena no array
-    fread(list, sizeof(Tarefa), i, file);
+    while (!feof(file)) {
+      fread(list[x].desc, sizeof(list[x].desc), 1, file);
+      fread(list[x].cat, sizeof(list[x].cat), 1, file);
+      fread(&prio, sizeof(prio), 1, file);
+      list[x].prio =  prio - '0';
+      fread(list[x].state, sizeof(list[x].state), 1, file);
+    }
 
     fclose(file);
     printf("Tarefas carregadas com sucesso!\n");
