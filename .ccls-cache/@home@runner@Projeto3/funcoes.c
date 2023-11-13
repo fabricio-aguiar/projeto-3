@@ -457,9 +457,9 @@ void save(char *arquivo) {//função que salva o array em um arquivo
     for(int x=0;x<i;x++){
       fwrite(list[x].desc, sizeof(list[x].desc), 1, file);
       fwrite(list[x].cat, sizeof(list[x].cat), 1, file);
+      fwrite(list[x].state, sizeof(list[x].state), 1, file);
       int prio = list[x].prio +'0';
       fwrite(&prio, sizeof(prio), 1, file);
-      fwrite(list[x].state, sizeof(list[x].state), 1, file);
     }
 
     fclose(file);
@@ -477,14 +477,28 @@ void lerarquivo(char *arquivo) {//função para ler o arquivo salvo e salvar no 
   }
 
   while (!feof(file)) {
-    fread(list[x].desc, sizeof(list[x].desc), 1, file);
-    fread(list[x].cat, sizeof(list[x].cat), 1, file);
+    Tarefa tarefa;
+    fread(tarefa.desc, sizeof(list[x].desc), 1, file);
+    fread(tarefa.cat, sizeof(list[x].cat), 1, file);
+    fread(tarefa.state, sizeof(list[x].state), 1, file);
     fread(&prio, sizeof(prio), 1, file);
-    list[x].prio =  prio - '0';
-    fread(list[x].state, sizeof(list[x].state), 1, file);
+    tarefa.prio =  prio - '0';
+    printf("\nTarefa %d:\n", x+1);
+    printf("Descricao: %s\n",tarefa.desc);
+    printf("Categoria: %s\n",tarefa.cat);
+    printf("Prioridade: %d\n",tarefa.prio);
+    printf("Estado: %s\n",tarefa.state);
+    list[x] = tarefa;
+    printf("\nTarefa %d:\n", x+1);
+    printf("Descricao: %s\n",list[x].desc);
+    printf("Categoria: %s\n",list[x].cat);
+    printf("Prioridade: %d\n",list[x].prio);
+    printf("Estado: %s\n",list[x].state);
     x++;
   }
 
+  i = x-1;  
+  
   fclose(file);
   printf("Tarefas carregadas com sucesso!\n");
 }
