@@ -345,18 +345,18 @@ void exportar(){
   if(escolha == 1){
     FILE *p = fopen("prioridade.txt", "w");
     printf("Qual a prioridade da tarefa?\n1-Urgente\n2-Necessaria\n3-Nao muito importante\n");
-     scanf("%d", &prio);
+      scanf("%d", &prio);
+      if(prio!=1 && prio!=2 && prio!=3){
+         fclose(p);
+         printf("Prioridade invalida\n");
+         menu();
+       }
       for(int x=0; x<i; x++){
        if(list[x].prio == prio){
          fprintf(p, "Tarefa %d: %d  %s  %s  %s\n", x+1, list[x].prio, list[x].cat, list[x].state, list[x].desc);
        }
       }
       fclose(p);
-     if(prio!=1||prio!=2||prio!=3){
-       fclose(p);
-       printf("Prioridade invalida\n");
-       menu();
-     }
   }
   else if(escolha == 2){
     FILE *p = fopen("categoria.txt", "w");
