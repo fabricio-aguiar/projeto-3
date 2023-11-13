@@ -18,7 +18,7 @@ void criar(){//função que cria as tarefas
     int estado;
     int categ;
     printf("\n");
-    printf("Qual a categoria da tarefa?\n1-Limpeza\n2-Trabalho\n3-Organizacao\n4-Outros");
+    printf("Qual a categoria da tarefa?\n1-Limpeza\n2-Trabalho\n3-Organizacao\n4-Outros\n");
     scanf("%d", &categ);
     if (categ == 1){
       strcpy(tarefa.cat, "Limpeza");
@@ -36,11 +36,9 @@ void criar(){//função que cria as tarefas
       printf("Categoria invalida");
       menu();
     }
-    printf("Qual a descricao da tarefa?\n");
-    scanf("%s", tarefa.desc);
-    printf("Qual a prioridade da tarefa?\n1-Urgente\n2-Necessaria\n3-Nao muito importante");
+    printf("Qual a prioridade da tarefa?\n1-Urgente\n2-Necessaria\n3-Nao muito importante\n");
     scanf("%d", &tarefa.prio);
-    printf("Qual o estado da tarefa?\n1-Completo\n2-Em andamento\n3-Nao iniciado");
+    printf("Qual o estado da tarefa?\n1-Completo\n2-Em andamento\n3-Nao iniciado\n");
     scanf("%d", &estado);
     if(estado == 1){
       strcpy(tarefa.state, "Completo");
@@ -55,6 +53,8 @@ void criar(){//função que cria as tarefas
       printf("Estado invalido");
       menu();
     }
+    printf("Qual a descricao da tarefa?\n");
+    scanf("%s", tarefa.desc);
   
     list[i] = tarefa; //coloca o objeto tarefa dentro do array list
     i++; //incrementa o número de tarefas
@@ -81,6 +81,7 @@ void listar(){//função que lista as tarefas
   int prio;
   int state;
   printf("\nEscolha como voce deseja listar suas tarefas:\n1-Listar todas as tarefas\n2-Listar tarefas por categoria\n3-Listar tarefas por prioridade\n4-Listar tarefas por estado\n5-Listar por prioridade e categoria.\n\n");
+  scanf("%d", &escolha);
   if(escolha == 1){
     for(int x = 0; x<i; x++){ //estrutura de repetição que percorre o array com as tarefas e printa os atributos
         printf("\nTarefa %d:\n", x+1);
@@ -453,11 +454,12 @@ void save(char *arquivo) {//função que salva o array em um arquivo
         perror("Erro ao abrir o arquivo");
     }
 
-    // escrever a quantidade de tarefas
-    fwrite(&i, sizeof(int), 1, file);
-
-    // escrever as tarefas dentro do arquivo
-    fwrite(list, sizeof(Tarefa), i, file);
+    for(int x=0;x<i;x++){
+      fwrite(list[x].desc, sizeof(list[x].desc), 1, file);
+      fwrite(list[x].cat, sizeof(list[x].cat), 1, file);
+      fwrite(list[x].prio, sizeof(list[x].prio), 1, file);
+      fwrite(list[x].state, sizeof(list[x].state), 1, file);
+    }
 
     fclose(file);
     printf("Tarefas salvas com sucesso!\n");

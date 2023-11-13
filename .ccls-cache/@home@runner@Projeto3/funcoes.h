@@ -4,4 +4,6 @@ void deletar();
 void listar();
 void sair();
 void lerarquivo();
+void alterar();
+void exportar();
 void save();
