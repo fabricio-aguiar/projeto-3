@@ -33,11 +33,19 @@ void criar(){//função que cria as tarefas
       strcpy(tarefa.cat, "Outros");
     }
     else{
-      printf("Categoria invalida");
+      printf("Categoria invalida\n");
       menu();
     }
     printf("Qual a prioridade da tarefa?\n1-Urgente\n2-Necessaria\n3-Nao muito importante\n");
-    scanf("%d", &tarefa.prio);
+    int prio;
+    scanf("%d", &prio);
+    if(prio!=1&&prio!=2&&prio!=3){
+      printf("Prioridade invalida\n");
+      menu();
+    }
+    else{
+      tarefa.prio = prio;
+    }
     printf("Qual o estado da tarefa?\n1-Completo\n2-Em andamento\n3-Nao iniciado\n");
     scanf("%d", &estado);
     if(estado == 1){
@@ -50,7 +58,7 @@ void criar(){//função que cria as tarefas
       strcpy(tarefa.state, "Nao iniciado");
     }
     else{
-      printf("Estado invalido");
+      printf("Estado invalido\n");
       menu();
     }
     printf("Qual a descricao da tarefa?\n");
