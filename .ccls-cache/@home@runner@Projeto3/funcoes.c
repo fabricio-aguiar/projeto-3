@@ -139,7 +139,7 @@ void listar(){//função que lista as tarefas
         }
       }
       else{
-        printf("Categoria invalida");
+        printf("Categoria invalida\n");
         menu();
       }
   }
@@ -147,7 +147,7 @@ void listar(){//função que lista as tarefas
        printf("Qual a prioridade da tarefa?\n1-Urgente\n2-Necessaria\n3-Nao muito importante\n");
       scanf("%d", &prio);
         if(prio!=1 && prio!=2 && prio!=3){
-           printf("Prioridade invalida");
+           printf("Prioridade invalida\n");
            menu();
          }
       for(int x=0; x<i; x++){
@@ -197,7 +197,7 @@ void listar(){//função que lista as tarefas
          }
        }
        else{
-         printf("Estado invalido");
+         printf("Estado invalido\n");
          menu();
        }
     }
@@ -207,7 +207,7 @@ void listar(){//função que lista as tarefas
       printf("Qual a prioridade da tarefa?\n1-Urgente\n2-Necessaria\n3-Nao muito importante\n");
       scanf("%d", &prio);
       if(prio!=1 && prio!=2 && prio!=3){
-         printf("Prioridade invalida");
+         printf("Prioridade invalida\n");
          menu();
        }
       if (categ == 1){
@@ -313,7 +313,15 @@ void alterar(){
   }
   else if(escolha == 3){
     printf("Digite a nova prioridade:\nUrgente\n2-Necessaria\n3-Nao muito importante\n");
-      scanf("%d", &list[x].prio);
+    int prio;
+    scanf("%d", &prio);
+    if(prio!=1&&prio!=2&&prio!=3){
+      printf("Prioridade invalida\n");
+      menu();
+    }
+    else{
+      list[x].prio = prio;
+    }
   }
   else if(escolha == 4){
     printf("Digite o novo estado:\n-Completo\n2-Em andamento\n3-Nao iniciado\n");
@@ -411,7 +419,7 @@ void exportar(){
       printf("Qual a prioridade da tarefa?\n1-Urgente\n2-Necessaria\n3-Nao muito importante\n");
       scanf("%d", &prio);
       if(prio!=1 && prio!=2 && prio!=3){
-         printf("Prioridade invalida");
+         printf("Prioridade invalida\n");
          menu();
        }
       if (categ == 1){
